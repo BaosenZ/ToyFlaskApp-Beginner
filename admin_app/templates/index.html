@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Job Trigger</title>
+</head>
+
+<body>
+    <h2>Job Queue</h2>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li><strong>{{ message }}</strong></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <form action="/trigger-all" method="post">
+        <button type="submit">Trigger Full Job</button>
+    </form>
+    <br>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>SMILES</th>
+            <th>Concentration</th>
+        </tr>
+        {% for id, smiles, conc in files %}
+        <tr>
+            <td>{{ id }}</td>
+            <td>{{ smiles }}</td>
+            <td>{{ conc }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+services:
+  mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: jobs_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  user_app:
+    build: ./user_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=mysql
+
+  admin_app:
+    build: ./admin_app
+    ports:
+      - "5001:5000"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - DB_HOST=mysql
