@@ -29,7 +29,7 @@ docker-compose up --build
 
 ### Stage 2: Run user app only without Docker
 
-Let us now go back a bit and run only user app without Docker. For this, you need install MySQL database. Let's start:  
+Let us now go back a bit and run only user app without Docker (Note: Close your docker container before doing this part). For this, you need install MySQL database. Let's start:  
 1. Install MySQL database. Checkout this video: https://www.youtube.com/watch?v=EnQTuLAyI7o. You can find more information online about this. Note: set matched password. 
 2. Let's run user app only in your terminal (you need to install proper packages):
     ```bash
@@ -52,7 +52,7 @@ Let us now go back a bit and run only user app without Docker. For this, you nee
 
 Note that remember to stop the MySQL service after finishing.  
 
-### Final Showcase
+### Final Stage: Showcase
 
 1. Show you can run the code
 2. Show new entries in your MySQL Workbench
